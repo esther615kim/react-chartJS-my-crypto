@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 import Header from './components/Header';
-import Hero from './components/Hero/index';
 // import Search from './components/Search';
 import CoinList from './components/CoinList/index';
+import Trending from './components/Trending/index';
 
 function App() {
   return (
@@ -10,9 +10,7 @@ function App() {
       <Header/>
       <Grid container spacing={1}>
         <Grid item>
-        </Grid>
-        <Grid item>
-        <Hero/>
+        <Trending/>
         </Grid>
         <Grid item>
           <CoinList/>

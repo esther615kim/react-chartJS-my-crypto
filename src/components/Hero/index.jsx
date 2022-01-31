@@ -18,11 +18,12 @@ const Trending = () => {
     setLoading((prev) => !prev);  
   };
 
-  console.log(items);
   useEffect(() => {
     fetchData();
   // }, [items]);
 }, []);
+
+// console.log(items);
 
   return (
     <Box>

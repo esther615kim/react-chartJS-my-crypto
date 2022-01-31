@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box} from "@mui/material";
 import { FaBtc } from "react-icons/fa";
-import { StyledUl, StyledBox } from "./crypto.styled";
+import { StyledUl, StyledBox,StyledDiv } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from "../../config/api";
 import { CryptoState } from "../../context";
-import Search from "./../Search/index";
+// import Search from "./../Search/index";
 
 const CoinList = () => {
   const [items, setItems] = useState([]);
@@ -14,18 +14,14 @@ const CoinList = () => {
 
   const { currency } = CryptoState();
 
-// DRY
+  // DRY
   const fetchData = async () => {
-    setLoading((prev) => !prev); // true
+    setLoading((prev) => !prev);
     const { data } = await axios.get(CryptoList(currency));
     const updatedData = [...data];
     setItems(updatedData);
-    setLoading((prev) => !prev); // false
+    setLoading((prev) => !prev);
   };
-
-  const handleSearch = useCallback(() => {
-    return items.filter((item) => item.id.toLowerCase().includes(search));
-  },[items,search]);
 
   useEffect(() => {
     // fetch data
@@ -34,16 +30,25 @@ const CoinList = () => {
 
   return (
     <>
-      <Search onChange={(e) =>  setSearch(e.targe.value)} />
-      <Box>
+    <StyledDiv>
+      <input
+      placeholder='search...'
+        type="text"
+        onChange={(event) => {
+          event.target.value && setSearch(event.target.value);
+        }}
+      />
+      </StyledDiv>
+      {/* <Box> */}
         <StyledUl>
-          {
-          search ? (
-            // 1.logic for showing data from handleSearch func result
-            <h5>Looking ...</h5>
-          ) : (
-            // 2.otherwise show everything
-            items.map((item) => {
+          {items
+            // eslint-disable-next-line array-callback-return
+            .filter((coin) => {
+              if(search === "") return coin;
+              else if (coin.id.toLowerCase().includes(search.toLowerCase()))
+                return coin;
+            })
+            .map((item) => {
               return (
                 <StyledBox key={item.id}>
                   <div>
@@ -54,10 +59,9 @@ const CoinList = () => {
                   <p>$ {item.current_price}</p>
                 </StyledBox>
               );
-            })
-          )}
+            })}
         </StyledUl>
-      </Box>
+      {/* </Box> */}
     </>
   );
 };

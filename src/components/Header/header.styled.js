@@ -16,7 +16,7 @@ import styled from "styled-components";
 export const StyledToolbar = styled(Toolbar)`
   display: flex;
   padding-left:2rem;
-  background:#32e6f0;
+  background:#42f5aa;
   color:#212121;
   justify-content: space-between;
   align-items: center;

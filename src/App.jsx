@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import Header from './components/Header';
 import Hero from './components/Hero/index';
+import Search from './components/Search';
 
 function App() {
   return (
@@ -8,9 +9,11 @@ function App() {
       <Header/>
       <Grid container spacing={2}>
         <Grid item>
-          <Hero/>
+          <Search/>
         </Grid>
-        <Grid item></Grid>
+        <Grid item>
+        <Hero/>
+        </Grid>
         <Grid item></Grid>
       </Grid>
     </div>

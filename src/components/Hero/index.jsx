@@ -12,21 +12,21 @@ const TRENDING = [
       "linear-gradient(71deg, rgba(101,95,242,1) 1%, rgba(233,84,250,0.9976365546218487) 100%)",
   },
   {
-    title: "bitcoin",
+    title: "bitcoin2",
     price: 4578.42,
     logo: "FaBtc",
     background:
       "linear-gradient(71deg, rgba(242,234,95,1) 1%, rgba(241,157,34,0.9976365546218487) 100%)",
   },
   {
-    title: "bitcoin",
+    title: "bitcoin3",
     price: 4578.42,
     logo: "FaBtc",
     background:
       "linear-gradient(71deg, rgba(242,234,95,1) 1%, rgba(34,241,122,0.9976365546218487) 100%)",
   },
   {
-    title: "bitcoin",
+    title: "bitcoin4",
     price: 4578.42,
     logo: "FaBtc",
     background:

@@ -4,10 +4,13 @@ import { FaBtc } from "react-icons/fa";
 import { StyledUl } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from '../../config/api';
+import { CryptoState } from '../../context';
 
 const CoinList = () => {
   const [items, setItems] = useState([]);
   const [loading,setLoading]=useState(false);
+
+  const {currency} = CryptoState();
 
   const fetchData =async()=>{
       setLoading(prev=>!prev); // true
@@ -17,11 +20,13 @@ const CoinList = () => {
       setLoading(prev=>!prev); // false
   }
 
+  console.log(items);
+
   useEffect(() => {
     // fetch data
     fetchData();
     // set data
-  }, []);
+  }, [currency]);
 
   return (
     <>

@@ -21,8 +21,7 @@ export const StyledDiv = styled('div')(({ theme }) => ({
       width:"100vw",
     //   background:"pink",
       justifyContent:"center",
-      alignItems:"center",
-      marginTop:"2rem"
+      alignItems:"center"
   })
 
   export const SearchIconWrapper = styled('div')(({ theme }) => ({

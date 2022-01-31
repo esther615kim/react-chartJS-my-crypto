@@ -11,7 +11,8 @@ export const StyledUl = styled.ul`
   flex-wrap:wrap;
   div{
       margin:0.5rem;
+      color:#212121;
       text-align:center;
-      background-color: ${({ bg }) => bg || '#eee'};
+      background: ${({ bg }) => bg || '#eee'};
   }
 `;

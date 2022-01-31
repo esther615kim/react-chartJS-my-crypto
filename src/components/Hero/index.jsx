@@ -3,7 +3,7 @@ import { Box, Paper } from "@mui/material";
 import { FaBtc } from "react-icons/fa";
 import { StyledUl } from './hero.styled';
 
-const TRENDING = [
+export const TRENDING = [
   {
     title: "bitcoin",
     price: 4578.42,

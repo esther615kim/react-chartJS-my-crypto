@@ -10,6 +10,7 @@ export const StyledDiv = styled('div')(({ theme }) => ({
     border:'1px solid #ddd',
     // width: '100%',
     borderRadius:10,
+    // background:"pink",
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -18,8 +19,6 @@ export const StyledDiv = styled('div')(({ theme }) => ({
 
   export const StyledBox = styled(Box)({
       display:"flex",
-      width:"100vw",
-    //   background:"pink",
       justifyContent:"center",
       alignItems:"center"
   })
@@ -42,12 +41,12 @@ export const StyledDiv = styled('div')(({ theme }) => ({
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
       width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        width: '12ch',
-        '&:focus': {
-          width: '20ch',
-        },
-      },
+      // [theme.breakpoints.up('sm')]: {
+      //   width: '12ch',
+      //   '&:focus': {
+      //     width: '20ch',
+      //   },
+      // },
     },
   }));
   

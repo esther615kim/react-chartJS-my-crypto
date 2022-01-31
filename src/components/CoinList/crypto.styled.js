@@ -13,7 +13,7 @@ export const StyledBox = styled(Box)`
     display:flex;
     flex-direction:row;
     align-items:center;
-    width:18.5rem;
+    width:18rem;
     margin:0.5rem;
     border-radius:0.2rem;
     background-color: ${({ bg }) => bg || '#eee'};

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box,Pagination } from "@mui/material";
-import { FaBtc } from "react-icons/fa";
 import { StyledUl, StyledBox, StyledDiv } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from "../../config/api";
@@ -9,7 +8,7 @@ import { CryptoState } from "../../context";
 const CoinList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
   const { currency } = CryptoState();
@@ -42,12 +41,13 @@ const CoinList = () => {
       <StyledUl>
         {items
           .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
-          // eslint-disable-next-line array-callback-return
-          // .filter((coin) => {
-          //   if(search === "") return coin;
-          //   else if (coin.id.toLowerCase().includes(search.toLowerCase()))
-          //     return coin;
-          // })
+
+          .filter(function(coin){
+            if(search === "") return coin;
+            else if (coin.id.toLowerCase().includes(search.toLowerCase())) return coin;
+          })
+          // .filter((coin) => (search === "" || (coin.id?.toLowerCase().includes(search.toLowerCase()))
+          // ))
           .map((item) => {
             return (
               <StyledBox key={item.id}>
@@ -61,7 +61,8 @@ const CoinList = () => {
                 <p>{item.price_change_percentage_24h.toFixed(1)}%</p>
               </StyledBox>
             );
-          })}
+          })
+        }
       </StyledUl>
       <Pagination
       sx={{display:"flex",justifyContent:"center",pb:5}}

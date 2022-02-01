@@ -23,5 +23,5 @@ You may also see any lint errors in the console.
 
 ## References
 - mui pagination https://mui.com/components/pagination/
--
+- CSS scan box-shadow samples https://getcssscan.com/css-box-shadow-examples
 -

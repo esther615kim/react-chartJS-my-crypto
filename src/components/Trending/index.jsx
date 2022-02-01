@@ -27,6 +27,7 @@ const Trending = () => {
     <Box>
       <StyledUl>
         {items?items.map((coin)=>(
+          
           <StyledPaper key={coin.item.id}>
                               <div>
                     <img src={coin.item.thumb} style={{width:25,height:25}} alt="symbol" />

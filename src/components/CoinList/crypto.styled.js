@@ -30,6 +30,9 @@ export const StyledBox = styled(Box)`
     font-size: 0.8rem;
     text-align:right;
   }
+:hover{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
 `;
 export const StyledDiv = styled.div`
 display:flex;

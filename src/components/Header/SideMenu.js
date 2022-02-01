@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { StyledButton } from './header.styled';
+import { StyledButton, StyledMenuItem, StyledLink } from './header.styled';
 
 export default function SideMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,7 +17,7 @@ export default function SideMenu() {
 
   return (
     <>
-      <StyledButton
+      <StyledButton sx={{color:"#fff"}}
         startIcon={<MenuIcon />}
         id="menuButton"
         aria-controls={open ? "basic-menu" : undefined}
@@ -34,9 +34,11 @@ export default function SideMenu() {
           "aria-labelledby": "menuButton",
         }}
       >
-        <MenuItem onClick={handleClose}>News</MenuItem>
-        <MenuItem onClick={handleClose}>Account</MenuItem>
-        <MenuItem onClick={handleClose}>Favourites</MenuItem>
+        <StyledLink to="/news">
+        <StyledMenuItem onClick={handleClose}>News</StyledMenuItem>
+        </StyledLink>
+        <StyledMenuItem onClick={handleClose}>Account</StyledMenuItem>
+        <StyledMenuItem onClick={handleClose}>My list</StyledMenuItem>
       </Menu>
     </>
   );

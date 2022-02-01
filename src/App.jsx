@@ -1,22 +1,21 @@
-import { Grid } from '@mui/material';
-import Header from './components/Header';
-// import Search from './components/Search';
-import CoinList from './components/CoinList/index';
-import Trending from './components/Trending/index';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import DetailPage from "./pages/DetailPage";
+import NewsPage from "./pages/NewsPage";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Grid container spacing={1}>
-        <Grid item>
-        <Trending/>
-        </Grid>
-        <Grid item>
-          <CoinList/>
-        </Grid>
-      </Grid>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage/>} />
+          {/* <Route path="/news" element={<NewsPage />} />
+          <Route path="/crypto" element={<DetailPage />} /> */}
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

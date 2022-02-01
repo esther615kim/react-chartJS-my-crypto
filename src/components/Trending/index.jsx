@@ -8,7 +8,6 @@ const Trending = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // DRY
   const fetchData = async () => {
     setLoading((prev) => !prev); 
     const customAxios = axios.create({}); 
@@ -18,7 +17,7 @@ const Trending = () => {
     setLoading((prev) => !prev);  
   };
 
-  console.log(items);
+  // console.log(items);
   useEffect(() => {
     fetchData();
   // }, [items]);

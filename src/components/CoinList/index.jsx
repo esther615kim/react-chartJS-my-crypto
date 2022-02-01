@@ -5,7 +5,6 @@ import { StyledUl, StyledBox,StyledDiv } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from "../../config/api";
 import { CryptoState } from "../../context";
-// import Search from "./../Search/index";
 
 const CoinList = () => {
   const [items, setItems] = useState([]);
@@ -14,7 +13,7 @@ const CoinList = () => {
 
   const { currency } = CryptoState();
 
-  // DRY
+  // DRY?
   const fetchData = async () => {
     setLoading((prev) => !prev);
     const { data } = await axios.get(CryptoList(currency));
@@ -22,9 +21,9 @@ const CoinList = () => {
     setItems(updatedData);
     setLoading((prev) => !prev);
   };
-
+  
+  console.log(items);
   useEffect(() => {
-    // fetch data
     fetchData();
   }, []);
 
@@ -39,29 +38,33 @@ const CoinList = () => {
         }}
       />
       </StyledDiv>
-      {/* <Box> */}
         <StyledUl>
           {items
             // eslint-disable-next-line array-callback-return
-            .filter((coin) => {
-              if(search === "") return coin;
-              else if (coin.id.toLowerCase().includes(search.toLowerCase()))
-                return coin;
-            })
+            // .filter((coin) => {
+            //   if(search === "") return coin;
+            //   else if (coin.id.toLowerCase().includes(search.toLowerCase()))
+            //     return coin;
+            // })
             .map((item) => {
+              let trend = item.price_change_percentage_24?.toFixed(1);
+
               return (
                 <StyledBox key={item.id}>
                   <div>
                     <img src={item.image} alt="symbol" />
                   </div>
-
                   <h5>{item.id}</h5>
-                  <p>$ {item.current_price}</p>
+                  <p style={{width:"4rem"}} >$ {item.current_price.toFixed(2)} 
+                  </p>
+                  <p>
+                    {item.price_change_percentage_24h.toFixed(1)}
+                    %
+                  </p>
                 </StyledBox>
               );
             })}
         </StyledUl>
-      {/* </Box> */}
     </>
   );
 };

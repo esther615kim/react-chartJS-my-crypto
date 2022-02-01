@@ -22,11 +22,13 @@ export const StyledBox = styled(Box)`
     height: 2rem;
   }
   h5 {
+    width:4.7rem;
     padding-right: 2rem;
   }
-  p {
-    margin-right: 1rem;
+  p{
+    margin-right: 0.5rem;
     font-size: 0.8rem;
+    text-align:right;
   }
 `;
 export const StyledDiv = styled.div`

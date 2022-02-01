@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box} from "@mui/material";
+import { Box,Pagination } from "@mui/material";
 import { FaBtc } from "react-icons/fa";
-import { StyledUl, StyledBox,StyledDiv } from "./crypto.styled";
+import { StyledUl, StyledBox, StyledDiv } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from "../../config/api";
 import { CryptoState } from "../../context";
@@ -10,6 +10,7 @@ const CoinList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState();
+  const [page, setPage] = useState(1);
 
   const { currency } = CryptoState();
 
@@ -21,50 +22,55 @@ const CoinList = () => {
     setItems(updatedData);
     setLoading((prev) => !prev);
   };
-  
-  console.log(items);
+
+  // console.log(items);
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <>
-    <StyledDiv>
-      <input
-      placeholder='search...'
-        type="text"
-        onChange={(event) => {
-          event.target.value && setSearch(event.target.value);
-        }}
-      />
+      <StyledDiv>
+        <input
+          placeholder="search..."
+          type="text"
+          onChange={(event) => {
+            event.target.value && setSearch(event.target.value);
+          }}
+        />
       </StyledDiv>
-        <StyledUl>
-          {items
-            // eslint-disable-next-line array-callback-return
-            // .filter((coin) => {
-            //   if(search === "") return coin;
-            //   else if (coin.id.toLowerCase().includes(search.toLowerCase()))
-            //     return coin;
-            // })
-            .map((item) => {
-              let trend = item.price_change_percentage_24?.toFixed(1);
-
-              return (
-                <StyledBox key={item.id}>
-                  <div>
-                    <img src={item.image} alt="symbol" />
-                  </div>
-                  <h5>{item.id}</h5>
-                  <p style={{width:"4rem"}} >$ {item.current_price.toFixed(2)} 
-                  </p>
-                  <p>
-                    {item.price_change_percentage_24h.toFixed(1)}
-                    %
-                  </p>
-                </StyledBox>
-              );
-            })}
-        </StyledUl>
+      <StyledUl>
+        {items
+          .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
+          // eslint-disable-next-line array-callback-return
+          // .filter((coin) => {
+          //   if(search === "") return coin;
+          //   else if (coin.id.toLowerCase().includes(search.toLowerCase()))
+          //     return coin;
+          // })
+          .map((item) => {
+            return (
+              <StyledBox key={item.id}>
+                <div>
+                  <img src={item.image} alt="symbol" />
+                </div>
+                <h5>{item.id}</h5>
+                <p style={{ width: "4rem" }}>
+                  $ {item.current_price.toFixed(2)}
+                </p>
+                <p>{item.price_change_percentage_24h.toFixed(1)}%</p>
+              </StyledBox>
+            );
+          })}
+      </StyledUl>
+      <Pagination
+      sx={{display:"flex",justifyContent:"center",pb:5}}
+      count={5} page={page}
+      onChange={(_,value)=>{
+        setPage(value);
+        window.scroll(0,150);
+      }}
+      />
     </>
   );
 };

@@ -1,9 +1,8 @@
-import { AppBar } from '@mui/material';
 import React from 'react';
+import { AppBar } from '@mui/material';
 import { CryptoState } from '../../context';
 import { StyledToolbar,StyledLink } from './header.styled';
 import SideMenu from './SideMenu';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
   // add currency options

@@ -1,18 +1,6 @@
-// import { styled } from '@mui/material/styles';
 import { Button, Toolbar,MenuItem } from "@mui/material";
-// import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-
-// export const StyledLink = styled(Link)`
-//   font-family: "Manrope", sans-serif;
-//   text-decoration: none;
-//   maring-right: 2rem;
-//   h4 {
-//     color: #212121;
-//     text-decoration: none;
-//   }
-// `;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -42,3 +30,13 @@ font-weight:500;
 }
 
 `
+
+// export const StyledLink = styled(Link)`
+//   font-family: "Manrope", sans-serif;
+//   text-decoration: none;
+//   maring-right: 2rem;
+//   h4 {
+//     color: #212121;
+//     text-decoration: none;
+//   }
+// `;

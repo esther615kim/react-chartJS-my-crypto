@@ -11,8 +11,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<LandingPage/>} />
-          {/* <Route path="/news" element={<NewsPage />} />
-          <Route path="/crypto" element={<DetailPage />} /> */}
+          <Route path="/news" element={<NewsPage />} />
+          {/* <Route path="/crypto" element={<DetailPage />} /> */} 
         </Routes>
       </div>
     </BrowserRouter>

@@ -13,7 +13,6 @@ export default function CategoryTabs() {
       <Tabs value={value} onChange={handleChange} centered>
         <Tab label="Latest" />
         <Tab label="Trending" />
-        <Tab label="Crypto" />
       </Tabs>
     </Box>
   );

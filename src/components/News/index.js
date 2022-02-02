@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
 
-import { StyledUl,StyledPaper } from "./news.styled";
-import axios from "axios";
+import {useGetNewsQuery } from '../../store/fetchNewsApi';
+import CategoryTabs from './Tabs';
 
 const News = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [news, setNews] = useState([]);
+  const {data} = useGetNewsQuery({category:'Cryptocurrency', count:10});
 
-  const fetchData = async () => {
-    setLoading((prev) => !prev); 
-    const customAxios = axios.create({}); 
-    const {data} = await customAxios.get("https://api.coingecko.com/api/v3/search/trending");
-    // const updatedData = [...data] // how to fix "data is not iterable"
-    setItems(data.coins); // not immutable :(
-    setLoading((prev) => !prev);  
-  };
-
-  // console.log(items);
   useEffect(() => {
-    fetchData();
-  // }, [items]);
-}, []);
+    setNews(data);
+  }, [data]);
+
 
   return (
-    <Box>
-      <StyledUl>
-        {items?items.map((coin)=>(
-          
-          <StyledPaper key={coin.item.id}>
-                              <div>
-                    <img src={coin.item.thumb} style={{width:25,height:25}} alt="symbol" />
-                  </div>
-            <h5>{coin.item.id}</h5>
+    <StyledBox>
+<CategoryTabs/>
+
+
+      {
+      news.value?(
+      news.value.map(item=>(
+              <StyledPaper>
+               <img
+                src={item.image?.thumbnail?.contentUrl ||"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-cat-wearing-sunglasses-while-sitting-royalty-free-image-1571755145.jpg"}
+                style={{ width: 120, height: 120 }}
+                alt="symbol"
+              /> 
+              <div>
+            <h5>{item.name}</h5>
+            <p>{item.description}
+            </p>
+            </div> 
           </StyledPaper>
-        )):(
-          <h3>loading...</h3>
-        ) }
-      </StyledUl>
-    </Box>
+      ))
+      ):(
+        <div>
+        <h3>loading...</h3>
+        </div>
+      )
+    }
+    </StyledBox>
   );
 };
 

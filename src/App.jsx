@@ -3,10 +3,14 @@ import Header from "./components/Header";
 import DetailPage from "./pages/DetailPage";
 import NewsPage from "./pages/NewsPage";
 import LandingPage from "./pages/LandingPage";
+import {Provider} from 'react-redux';
+
+import {store} from './store/index';
 
 function App() {
   return (
     <BrowserRouter>
+    <Provider store={store}>
       <div className="App">
         <Header />
         <Routes>
@@ -15,6 +19,7 @@ function App() {
           {/* <Route path="/crypto" element={<DetailPage />} /> */} 
         </Routes>
       </div>
+      </Provider>
     </BrowserRouter>
   );
 }

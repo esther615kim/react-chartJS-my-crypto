@@ -6,6 +6,10 @@ export const StyledUl = styled.ul`
   color: #212121;
   align-items: center;
   flex-wrap: wrap;
+  a{
+    text-decoration: none;
+    color:#212121;
+  }
 `;
 
 export const StyledBox = styled(Box)`

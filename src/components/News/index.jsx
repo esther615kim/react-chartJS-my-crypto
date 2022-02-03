@@ -4,6 +4,7 @@ import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
 
 import CategoryTabs from "./Tabs";
 import { newsData } from "../../config/api";
+import { Link } from 'react-router-dom';
 
 const News = () => {
   // Error here!!
@@ -39,6 +40,7 @@ const News = () => {
                   <p>{item.description}</p>
                 </div>
               </StyledPaper>
+
             ))
         ) : (
           <h4>loading...</h4>

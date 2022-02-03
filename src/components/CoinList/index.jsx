@@ -4,6 +4,7 @@ import { StyledUl, StyledBox, StyledDiv } from "./crypto.styled";
 import axios from "axios";
 import { CryptoList } from "../../config/api";
 import { CryptoState } from "../../context";
+import { Link } from 'react-router-dom';
 
 const CoinList = () => {
   const [items, setItems] = useState([]);
@@ -50,6 +51,7 @@ const CoinList = () => {
           // ))
           .map((item) => {
             return (
+              <Link to={`/crypto/${item.id}`}>
               <StyledBox key={item.id}>
                 <div>
                   <img src={item.image} alt="symbol" />
@@ -60,6 +62,7 @@ const CoinList = () => {
                 </p>
                 <p>{item.price_change_percentage_24h.toFixed(1)}%</p>
               </StyledBox>
+              </Link>
             );
           })
         }

@@ -51,18 +51,21 @@ const CoinList = () => {
           // ))
           .map((item) => {
             return (
-              <Link to={`/crypto/${item.id}`}>
+
               <StyledBox key={item.id}>
                 <div>
                   <img src={item.image} alt="symbol" />
                 </div>
+                <Link to={`/crypto/${item.id}`}>
                 <h5>{item.id}</h5>
+                </Link>
                 <p style={{ width: "4rem" }}>
                   $ {item.current_price.toFixed(2)}
                 </p>
+
                 <p>{item.price_change_percentage_24h.toFixed(1)}%</p>
               </StyledBox>
-              </Link>
+
             );
           })
         }

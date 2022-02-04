@@ -8,23 +8,31 @@ const Chart = ({ id }) => {
   const [loading, setLoading] = useState(false);
 
 
-  const fetchChart = async () => {
-
-    if (!id) throw new Error("crypto id information is not available");
-    id && console.log("which coin", id);
-    setLoading(prev=>!prev); // true
-
-    const data = await axios.get(ChartInfo(id));
-    const newChart = [...data];
-    setChart(newChart); // immuitable?
-    setLoading(prev=>!prev); // false
-    console.log(chart);
-    return data;
+  const fetchSingleCoin = async () => {
+    console.log("coin",id);
+    const data  = await axios.get(ChartInfo(id));
+    console.log("차트",data);
+    // return data;
   };
 
-  useEffect(() => {
-    fetchChart();
-  }, [id,chart]); //re-rendering FOREVER
+  fetchSingleCoin()
+
+  // const fetchChart = async () => {
+  //   if (!id) throw new Error("crypto id information is not available");
+    id && console.log("which coin", id);
+  //   setLoading(prev=>!prev); // true
+
+  //   const data = await axios.get(ChartInfo(id));
+  //   const newChart = [...data];
+  //   setChart(newChart); // immuitable?
+  //   setLoading(prev=>!prev); // false
+  //   console.log(chart);
+  //   return data;
+  // };
+
+  // useEffect(() => {
+  //   fetchChart();
+  // }, [id,chart]); //re-rendering FOREVER
 
   return (
     <div>

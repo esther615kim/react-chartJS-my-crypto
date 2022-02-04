@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box,Pagination } from "@mui/material";
 import { StyledUl, StyledBox, StyledDiv } from "./crypto.styled";
 import axios from "axios";
-import { CryptoList } from "../../config/api";
+import { SingleData,CryptoList } from "../../config/api";
 import { CryptoState } from "../../context";
 import { Link } from 'react-router-dom';
 
@@ -23,9 +23,17 @@ const CoinList = () => {
     setLoading((prev) => !prev);
   };
 
+  const fetchSingleCoin = async (id) => {
+    const { data } = await axios.get(SingleData(id));
+    console.log("single data",data);
+    return data;
+  };
+
+
   // console.log(items);
   useEffect(() => {
     fetchData();
+    // fetchSingleCoin("bitcoin");
   }, []);
 
   return (
@@ -47,8 +55,6 @@ const CoinList = () => {
             if(search === "") return coin;
             else if (coin.id.toLowerCase().includes(search.toLowerCase())) return coin;
           })
-          // .filter((coin) => (search === "" || (coin.id?.toLowerCase().includes(search.toLowerCase()))
-          // ))
           .map((item) => {
             return (
 
@@ -56,7 +62,9 @@ const CoinList = () => {
                 <div>
                   <img src={item.image} alt="symbol" />
                 </div>
-                <Link to={`/crypto/${item.id}`}>
+                <Link to={`/crypto/${item.id}`} 
+                // state={{ fetchSingleCoin}}
+                >
                 <h5>{item.id}</h5>
                 </Link>
                 <p style={{ width: "4rem" }}>

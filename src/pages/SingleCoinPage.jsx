@@ -1,72 +1,96 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
+import millify from "millify";
 import { Link, useParams } from "react-router-dom";
 import { useState } from 'react';
 import { SingleData } from './../config/api';
-import { axios } from 'axios';
-import { Divider, Grid } from '@mui/material';
-import { Box } from '@mui/material';
-import { Paper } from '@mui/material';
+import axios from 'axios';
+import { Grid,Box,Paper } from '@mui/material';
+import { CryptoState } from "../context"
+import Chart from '../components/SingleCoin/Chart';
+import { useCallback } from 'react';
+
+
 const SingleCoinPage = () => {
-  const [items, setItems] = useState([]);
+  const [crypto,setCrypto] = useState();
+  
   const [loaded, setLoaded] = useState(false);
-  const [page, setPage] = useState(1);
 
   const {id} = useParams();
-  // DRY?
-  const fetchData = async () => {
-    setLoaded((prev) => !prev);
+
+  const fetchSingleCoin = useCallback(async (id) => {
     const { data } = await axios.get(SingleData(id));
-    const updatedData = [...data];
-    setItems(updatedData);
-    console.log(data);
-    setLoaded((prev) => !prev);
-  };
+    // console.log("single data",data);
+    setCrypto(data);
+    console.log(crypto);
+    // return data;
+  },[]);
+
+  useEffect(() => { 
+    fetchSingleCoin(id);
+  }, [crypto]);
+
 
 
   return <Box pl={3}>
                 <div>
-          <Link to={"/"}>
+          <Link style={{textDecoration:"none",color:"#aaa"}} to={"/"}>
             <h4>Go back</h4>
             </Link>
-        <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579" alt="cryptoImage" />
+      
             </div>
     <Grid container>
-      <Grid item xs={7} md={7}>
-      <h2>{id.toUpperCase()}</h2>
-      <h1>$38,809,08</h1>
-      </Grid>
-      <Grid item xs={3} md={3}>
-        <p>24H% 0.73%</p>
-        <p>24H Low</p>
-        <p>24H High</p>
-      </Grid>
-      <Grid item xs={11} md={11}>
-        <Paper sx={{height:"20rem"}}>
-          Chart!!
-        </Paper>
-      </Grid>
-      {/* <Divider variant="middle" /> */}
-      <Grid item xs={6} md={6}>
-      <h3>MarketCap</h3>
-      <h3>$735.35B</h3>
-      </Grid>
-      <Grid item xs={5} md={5}>
-      <h3>24H Volumne</h3>
-      <h3>$1.02B</h3>
-      </Grid>
-
-      <Grid item xs={11} md={11}>
-        <Box pb={3}>
-          <h3>Information</h3>
-          <div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores cum nostrum pariatur laudantium praesentium sit cupiditate, fugiat ducimus debitis ratione modi sequi asperiores totam ipsam perspiciatis voluptates dolore. Provident, voluptatem?</p>
-            
-          </div>
-        </Box>
-      </Grid>
-
+ {crypto?
+ ( 
+   <>
+    <Grid item sx={11} md={11}>
+    <img src={crypto.image.small} alt="cryptoImage" style={{margin:"1rem",}} />
+    </Grid>
+    {/* <Grid item sx={5} md={5}>
+    </Grid> */}
+    <Grid item xs={7} md={7}>
+    <h2>{id.toUpperCase()}</h2>
+    <h1>$ {crypto.market_data.current_price.usd.toLocaleString()}</h1>
+    </Grid>
+    <Grid item xs={6} md={6}>
+    <h5>Market rank:{crypto.market_cap_rank}</h5>
+      <p>Market cap {millify(crypto.market_data.market_cap.usd)}</p>
+      <p>Total volume{millify(crypto.market_data.total_volume.usd)}</p>
+    </Grid>
+    <Grid item xs={5} md={5}>
+    <h5>24H:{crypto.market_data.price_change_percentage_24h}%</h5>
+      <p>24H High {crypto.market_data.high_24h.usd.toLocaleString()}</p>
+      <p>24H Low {crypto.market_data.low_24h.usd.toLocaleString()}</p>
+    </Grid>
+    <Grid item xs={11} md={11}>
+      <Chart id={id}/>
+    </Grid>
+    {/* <Divider variant="middle" /> */}
+    <Grid item xs={6} md={6}>
+    <h3>Market Cap</h3>
+    <h3>$ {millify(crypto.market_data.market_cap.usd)}</h3>
+    </Grid>
+    <Grid item xs={5} md={5}>
+    <h3>24H Volumne</h3>
+    <h3>$1.02B</h3>
     </Grid>
 
+    <Grid item xs={11} md={11}>
+      <Box pb={3}>
+        <h3>Information</h3>
+        <div>
+          <p>{crypto.description.en}</p>
+          
+        </div>
+      </Box>
+    </Grid>
+    </>
+ ):(
+  <Grid item xs={7} md={7}>
+  <h2>loading...</h2>
+  </Grid>
+ )
+}
+    </Grid>
   </Box>;
 };
 

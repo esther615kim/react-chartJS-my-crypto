@@ -4,8 +4,7 @@ import SingleCoinPage from "./pages/SingleCoinPage";
 import NewsPage from "./pages/NewsPage";
 import LandingPage from "./pages/LandingPage";
 import { Provider } from "react-redux";
-
-// import {store} from './store/index';
+import SingleNews from './components/News/SingleNews';
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:id" element={<SingleNews />} />
           <Route path="/crypto/:id" element={<SingleCoinPage/>} />
           {/* <Route path="/crypto" element={<DetailPage />} /> */}
         </Routes>

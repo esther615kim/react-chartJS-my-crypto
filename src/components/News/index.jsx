@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box, Pagination } from "@mui/material";
 import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
-
+import axios from "axios"; 
 import CategoryTabs from "./Tabs";
-import { newsData } from "../../config/api";
-import { Link } from 'react-router-dom';
+import { newsData, newsHeaders } from "../../config/api";
+import { Link } from "react-router-dom";
 
 const News = () => {
   // Error here!!
@@ -12,11 +12,22 @@ const News = () => {
   const [loaded, setLoaded] = useState(false);
   const [page, setPage] = useState(1);
 
-  useEffect(async () => {
-    const data = await newsData({ category: "Cryptocurrency", count: 10 });
-    setLoaded(true);
-    setItems(data);
-  }, [items]);
+  const fetchNews = async () => { 
+
+    const { data } = await axios.get(newsData(newsHeaders)).catch(function (error) {
+        console.error(error);
+    });
+    // const {data}  = await newsData({ category: "Cryptocurrency", count: 10 });
+    console.log(data);
+    return data;
+  };
+
+  useEffect(() => {
+    fetchNews().then((res)=>{
+      console.log(res);
+    })
+
+  }, []);
 
   return (
     <>
@@ -35,12 +46,13 @@ const News = () => {
                   style={{ width: 120, height: 120 }}
                   alt="symbol"
                 />
-                <div>
-                  <h5>{item.name}</h5>
-                  <p>{item.description}</p>
-                </div>
+                <Link to={`/news/${item.id}`}> 
+                  <div>
+                    <h5>{item.name}</h5>
+                    <p>{item.description}</p>
+                  </div>
+                </Link>
               </StyledPaper>
-
             ))
         ) : (
           <h4>loading...</h4>

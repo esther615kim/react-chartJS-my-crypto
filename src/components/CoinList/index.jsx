@@ -63,7 +63,6 @@ const CoinList = () => {
                   <img src={item.image} alt="symbol" />
                 </div>
                 <Link to={`/crypto/${item.id}`} 
-                // state={{ fetchSingleCoin}}
                 >
                 <h5>{item.id}</h5>
                 </Link>

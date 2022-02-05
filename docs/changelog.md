@@ -1,4 +1,20 @@
 
+[0.0.4]2022-02-04
+
+- `added`
+- src > components > SingleCoin > Chart.jsx
+- `fixed`
+- set queries to fetch chart information from coinGecko API
+- `install` 
+--save react-chartjs-2 chart.js
+
+
+[0.0.3]2022-02-03
+
+- `added`
+- src > components > SingleCoin 
+- `fixed`
+- data fetching issues with axiso and redux rtk
 
 [0.0.2] 2022-02-01
 -`added`

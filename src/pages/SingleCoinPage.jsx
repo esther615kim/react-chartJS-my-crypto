@@ -3,27 +3,29 @@ import millify from "millify";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { SingleData } from "./../config/api";
-import axios from "axios"; // not {axis} 
+import axios from "axios"; // not {axis}
 import { Grid, Box } from "@mui/material";
 import Chart from "../components/SingleCoin/Chart";
 import { useCallback } from "react";
 
 const SingleCoinPage = () => {
   const [crypto, setCrypto] = useState();
-  const [loaded, setLoaded] = useState(false);
-
   const { id } = useParams();
 
   const fetchSingleCoin = useCallback(async (id) => {
     const { data } = await axios.get(SingleData(id));
-    setCrypto(data);
-    // console.log(crypto);
-    // return data;
+    return data;
   }, []);
 
   useEffect(() => {
-    fetchSingleCoin(id);
-  }, [crypto]);
+    fetchSingleCoin(id)
+    .then((res)=>{
+      const updatedCoin = res;
+      setCrypto(updatedCoin);
+      console.log("crypto info",crypto);
+    })
+    
+  }, [id]);
 
   return (
     <Box pl={3}>
@@ -36,7 +38,7 @@ const SingleCoinPage = () => {
       <Grid container>
         {crypto ? (
           <>
-            <Grid item sx={11} md={11}>
+            <Grid item xs={11} md={11}>
               <img
                 src={crypto.image.small}
                 alt="cryptoImage"
@@ -53,7 +55,7 @@ const SingleCoinPage = () => {
               <p>Total volume{millify(crypto.market_data.total_volume.usd)}</p>
             </Grid>
             <Grid item xs={5} md={5}>
-              <h5>24H:{crypto.market_data.price_change_percentage_24h}%</h5>
+              <h5>24H:{crypto.market_data.price_change_percentage_24h.toFixed(2)}%</h5>
               <p>24H High {crypto.market_data.high_24h.usd.toLocaleString()}</p>
               <p>24H Low {crypto.market_data.low_24h.usd.toLocaleString()}</p>
             </Grid>
@@ -80,9 +82,14 @@ const SingleCoinPage = () => {
             </Grid>
           </>
         ) : (
-          <Grid item xs={7} md={7}>
-            <h2>loading...</h2>
-          </Grid>
+          <>
+            <Grid item xs={7} md={7}>
+              <h2>loading... </h2>
+            </Grid>
+            <Grid item xs={11} md={11}>
+              <Chart id={id} />
+            </Grid>
+          </>
         )}
       </Grid>
     </Box>

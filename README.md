@@ -12,16 +12,18 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ## To-dos
--[ ] give 4 different colours to trending cards 🎨
--[ ] give conditions to price_change_24! (red/blue) 🎨
--[ ] fix items.filter() codes in CoinList index.jsx file
--[X] pagination
--[ ] add links(react-dom-router)
--[ ] create detail page(chart.js or victory.js)
+- [ ] give 4 different colours to trending cards 🎨
+- [ ] give conditions to price_change_24! (red/blue) 🎨
+- [ ] fix items.filter() codes in CoinList index.jsx file
+- [X] pagination
+- [ ] add links(react-dom-router)
+- [ ] create detail page(chart.js or victory.js)
 
--[ ] optimize component performance
+- [ ] optimize component performance
 
 ## References
 - mui pagination https://mui.com/components/pagination/
 - CSS scan box-shadow samples https://getcssscan.com/css-box-shadow-examples
--redux rtk https://redux-toolkit.js.org/rtk-query/overview 
+- redux rtk https://redux-toolkit.js.org/rtk-query/overview 
+- CoinGecko API https://www.coingecko.com/en/api
+- react-chart-js2 github https://github.com/reactchartjs/react-chartjs-2#docs

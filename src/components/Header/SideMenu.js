@@ -37,7 +37,6 @@ export default function SideMenu() {
         <StyledLink to="/news">
         <StyledMenuItem onClick={handleClose}>News</StyledMenuItem>
         </StyledLink>
-        <StyledMenuItem onClick={handleClose}>Account</StyledMenuItem>
         <StyledMenuItem onClick={handleClose}>My list</StyledMenuItem>
       </Menu>
     </>

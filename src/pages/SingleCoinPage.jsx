@@ -5,8 +5,9 @@ import { useState } from "react";
 import { SingleData } from "./../config/api";
 import axios from "axios"; // not {axis}
 import { Grid, Box } from "@mui/material";
-import Chart from "../components/SingleCoin/Chart";
+
 import { useCallback } from "react";
+import CryptoChart from './../components/SingleCoin/CryptoChart';
 
 const SingleCoinPage = () => {
   const [crypto, setCrypto] = useState();
@@ -22,7 +23,7 @@ const SingleCoinPage = () => {
     .then((res)=>{
       const updatedCoin = res;
       setCrypto(updatedCoin);
-      console.log("crypto info",crypto);
+      // console.log("crypto info",crypto);
     })
     
   }, [id]);
@@ -60,7 +61,7 @@ const SingleCoinPage = () => {
               <p>24H Low {crypto.market_data.low_24h.usd.toLocaleString()}</p>
             </Grid>
             <Grid item xs={11} md={11}>
-              <Chart id={crypto.id} />
+              <CryptoChart id={crypto.id} />
             </Grid>
             {/* <Divider variant="middle" /> */}
             <Grid item xs={6} md={6}>
@@ -87,7 +88,7 @@ const SingleCoinPage = () => {
               <h2>loading... </h2>
             </Grid>
             <Grid item xs={11} md={11}>
-              <Chart id={id} />
+              <CryptoChart id={id} />
             </Grid>
           </>
         )}

@@ -5,36 +5,45 @@ import axios from "axios";
 import CategoryTabs from "./Tabs";
 import { newsData, newsHeaders } from "../../config/api";
 import { Link } from "react-router-dom";
+import { useGetNewsQuery } from '../../store/fetchNewsApi';
 
 const News = () => {
   // Error here!!
-  const [items, setItems] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  // const [items, setItems] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('Cryptocurrency');
   const [page, setPage] = useState(1);
 
-  const fetchNews = async () => { 
+  const {data: fetchedNews, isFetching} = useGetNewsQuery({
+    newsCategory: selectedCategory,
+    count:20
+  });
 
-    const { data } = await axios.get(newsData(newsHeaders)).catch(function (error) {
-        console.error(error);
-    });
+  if (isFetching || !fetchedNews?.value) return <h3>Loading...</h3>
+
+
+  // const fetchNews = async () => { 
+
+  //   const { data } = await axios.get(newsData(newsHeaders)).catch(function (error) {
+  //       console.error(error);
+  //   });
     // const {data}  = await newsData({ category: "Cryptocurrency", count: 10 });
-    console.log(data);
-    return data;
-  };
+  //   console.log(data);
+  //   return data;
+  // };
 
-  useEffect(() => {
-    fetchNews().then((res)=>{
-      console.log(res);
-    })
+  // useEffect(() => {
+  //   fetchNews().then((res)=>{
+  //     console.log(res);
+  //   })
 
-  }, []);
+  // }, []);
 
   return (
     <>
       <StyledBox>
         <CategoryTabs />
-        {loaded && items ? (
-          items
+        { fetchedNews ? (
+          fetchedNews.value
             .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
             .map((item) => (
               <StyledPaper key={item.name}>

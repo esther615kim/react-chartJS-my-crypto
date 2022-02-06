@@ -1,3 +1,9 @@
+[0.0.5]2022-02-07
+-`added`
+- useFetchData customhook to avoid DRY
+-`fixing`
+- News componennt data fetching issue
+
 
 [0.0.4]2022-02-04
 

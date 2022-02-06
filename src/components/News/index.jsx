@@ -3,45 +3,23 @@ import { Box, Pagination } from "@mui/material";
 import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
 import axios from "axios"; 
 import CategoryTabs from "./Tabs";
-import { newsData, newsHeaders } from "../../config/api";
 import { Link } from "react-router-dom";
 import { useGetNewsQuery } from '../../store/fetchNewsApi';
 
 const News = () => {
-  // Error here!!
-  // const [items, setItems] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('Cryptocurrency');
   const [page, setPage] = useState(1);
+  const [news,setNews] = useState(null);
 
-  const {data: fetchedNews, isFetching} = useGetNewsQuery({
-    newsCategory: selectedCategory,
-    count:20
-  });
-
-  if (isFetching || !fetchedNews?.value) return <h3>Loading...</h3>
-
-
-  // const fetchNews = async () => { 
-
-  //   const { data } = await axios.get(newsData(newsHeaders)).catch(function (error) {
-  //       console.error(error);
-  //   });
-    // const {data}  = await newsData({ category: "Cryptocurrency", count: 10 });
-  //   console.log(data);
-  //   return data;
-  // };
-
-  // useEffect(() => {
-  //   fetchNews().then((res)=>{
-  //     console.log(res);
-  //   })
-
-  // }, []);
+  const {data: fetchedNews} = useGetNewsQuery();
+  console.log(fetchedNews);
 
   return (
     <>
       <StyledBox>
         <CategoryTabs />
+
+                  <h4>Hello</h4>
+{/* 
         { fetchedNews ? (
           fetchedNews.value
             .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
@@ -65,7 +43,7 @@ const News = () => {
             ))
         ) : (
           <h4>loading...</h4>
-        )}
+        )} */}
       </StyledBox>
       <Pagination
         sx={{ display: "flex", justifyContent: "center", pb: 5 }}
@@ -80,4 +58,4 @@ const News = () => {
   );
 };
 
-export default React.memo(News);
+export default News;

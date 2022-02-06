@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
 import millify from "millify";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
 import { SingleData } from "./../config/api";
-import axios from "axios"; // not {axis}
 import { Grid, Box,Divider } from "@mui/material";
 
-import { useCallback } from "react";
 import CryptoChart from './../components/SingleCoin/CryptoChart';
 import useFectchDatabyUrl from './../hooks/useFetchData';
 
@@ -17,7 +13,7 @@ const SingleCoinPage = () => {
 
   if(error) return <h3>error</h3>
   if(isLoading || !data) return <h3>Loading...</h3>;
-  console.log("훅",data.id);
+  console.log("custom-hook",data.id);
 
   return (
     <Box pl={3}>
@@ -78,8 +74,7 @@ const SingleCoinPage = () => {
 
 export default SingleCoinPage;
 
-
-
+// before refactoring
   // const fetchSingleCoin = useCallback(async (id) => {
   //   const { data } = await axios.get(SingleData(id));
   //   return data;

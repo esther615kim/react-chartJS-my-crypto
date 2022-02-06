@@ -5,11 +5,12 @@ import NewsPage from "./pages/NewsPage";
 import LandingPage from "./pages/LandingPage";
 import { Provider } from "react-redux";
 import SingleNews from './components/News/SingleNews';
+import { store } from './store/index';
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
       <div className="App">
         <Header />
         <Routes>
@@ -20,7 +21,7 @@ function App() {
           {/* <Route path="/crypto" element={<DetailPage />} /> */}
         </Routes>
       </div>
-      {/* </Provider> */}
+      </Provider>
     </BrowserRouter>
   );
 }

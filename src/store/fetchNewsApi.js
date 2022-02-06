@@ -11,22 +11,17 @@ const baseUrl = "https://bing-news-search1.p.rapidapi.com";
 
 const requestData = (url) => ({ url, headers: apiHeaders });
 
-// Define a service using a base URL and expected endpoints
 export const newsApi = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getNews: builder.query({
-      query: ({ category = "", count = 10 }) =>
+      query: () =>
         requestData(
-          `/search?q=${category}&safeSearch=Off&textFormat=Raw&count=${count}`
+          "https://bing-news-search1.p.rapidapi.com/news/search?q=Cryptocurrency&safeSearch=off&textFormat=Raw&freshness=Day&count=20"
         ),
     }),
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetNewsQuery } = newsApi;
-
-// baseUrl: process.env.REACT_APP_NEWS_API_URL

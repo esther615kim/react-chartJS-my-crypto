@@ -1,27 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Box, Pagination } from "@mui/material";
 import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
-import axios from "axios"; 
+import { useGetNewsQuery } from '../../store/fetchNewsApi';
 import CategoryTabs from "./Tabs";
 import { Link } from "react-router-dom";
-import { useGetNewsQuery } from '../../store/fetchNewsApi';
+
 
 const News = () => {
   const [page, setPage] = useState(1);
-  const [news,setNews] = useState(null);
+  const [news,setNews] = useState()
+  const data = useGetNewsQuery(); //data.data
+  
+  useEffect(()=>{
+    setTimeout(()=>{
+      console.log(data.status);
+      if(data.status==="fulfilled" && data.data.value.length){
+        console.log(data.data.value);
+        setNews(data.data.value);
+        console.log(news && news.length);
+      }
+    },1500)
 
-  const {data: fetchedNews} = useGetNewsQuery();
-  console.log(fetchedNews);
+  },[news]);
 
   return (
     <>
       <StyledBox>
         <CategoryTabs />
 
-                  <h4>Hello</h4>
-{/* 
-        { fetchedNews ? (
-          fetchedNews.value
+        { news ? (
+          news
             .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
             .map((item) => (
               <StyledPaper key={item.name}>
@@ -43,7 +51,7 @@ const News = () => {
             ))
         ) : (
           <h4>loading...</h4>
-        )} */}
+        )}
       </StyledBox>
       <Pagination
         sx={{ display: "flex", justifyContent: "center", pb: 5 }}
@@ -57,5 +65,6 @@ const News = () => {
     </>
   );
 };
+
 
 export default News;

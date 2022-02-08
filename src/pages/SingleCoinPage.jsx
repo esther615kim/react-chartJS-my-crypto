@@ -45,7 +45,7 @@ const SingleCoinPage = () => {
               <p>24H Low {data.market_data.low_24h.usd.toLocaleString()}</p>
             </Grid>
             <Grid item xs={11} md={11}>
-              <CryptoChart id={crypto.id} />
+              <CryptoChart id={id} />
             </Grid>
             <Grid item xs={6} md={6}>
               <h3>Market Cap</h3>

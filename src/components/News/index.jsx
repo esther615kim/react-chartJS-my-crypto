@@ -15,9 +15,7 @@ const News = () => {
     setTimeout(()=>{
       console.log(data.status);
       if(data.status==="fulfilled" && data.data.value.length){
-        console.log(data.data.value);
         setNews(data.data.value);
-        console.log(news && news.length);
       }
     },1500)
 

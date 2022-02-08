@@ -1,8 +1,18 @@
+[0.0.5]2022-02-09
+-`fixed`
+- Chart component to fix chart datsets error
+-`added`
+- to-do list in issues(https://github.com/esther615kim/react-chartJS-my-crypto/issues/8)
+- `changed`
+- README.md to delete unnecessary content(to-dos)
+- change loader design(mui linear loader) in Chart component 
+
+
 [0.0.5]2022-02-07
 -`added`
 - useFetchData customhook to avoid DRY
--`fixing`
-- News componennt data fetching issue
+-`fixed`
+- News componennt data fetching issue 
 
 
 [0.0.4]2022-02-04

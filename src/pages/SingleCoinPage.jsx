@@ -1,7 +1,7 @@
 import millify from "millify";
 import { Link, useParams } from "react-router-dom";
 import { SingleData } from "./../config/api";
-import { Grid, Box,Button } from "@mui/material";
+import { Grid, Box,Button,LinearProgress } from "@mui/material";
 
 import CryptoChart from './../components/SingleCoin/CryptoChart';
 import useFectchDatabyUrl from './../hooks/useFetchData';
@@ -11,7 +11,9 @@ const SingleCoinPage = () => {
   const {data,isLoading,error} = useFectchDatabyUrl(SingleData(id));
 
   if(error) return <h3>error</h3>
-  if(isLoading || !data) return <h3>Loading...</h3>;
+  if(isLoading || !data) return <LinearProgress/>
+
+  console.log(data);
 
   return (
     <Box pl={3}>

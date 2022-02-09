@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { LinearProgress, Box, Paper } from "@mui/material";
+import { LinearProgress, Paper } from "@mui/material";
 import axios from "axios";
 import { ChartInfo } from "../../config/api";
 import "chart.js/auto";
@@ -31,13 +31,7 @@ const CryptoChart = ({ id }) => {
   const [cryptoPriceInfo, setCryptoPriceInfo] = useState();
   const [labels, setDateHistory] = useState([]);
   const [priceHistory, setPriceHistory] = useState([]);
-  // const [isLoaded, setIsLoaded] = useState(false);
-
-  // useCallback
-  const fetchSingleCoin = async () => {
-    const { data } = await axios.get(ChartInfo(id, 365));
-    return data;
-  }; 
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const options = {
     plugins: {
@@ -62,12 +56,17 @@ const CryptoChart = ({ id }) => {
       {
         label: id,
         data: priceHistory,
-        // data: [1.3, 1.25, 1.45, 1.2, 1.02, 1.13],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
+
+  // useCallback?
+  const fetchSingleCoin = async () => {
+    const { data } = await axios.get(ChartInfo(id, 365));
+    return data;
+  }; 
 
   useEffect(() => {
     setTimeout(() => {
@@ -80,7 +79,8 @@ const CryptoChart = ({ id }) => {
           formatChartData();
         });
     }, 500);
-  }, []);
+    // setIsLoaded(prev=>!prev)
+  }, []); //data
 
   const formatChartData = () => {
     if (!cryptoPriceInfo) return;
@@ -102,6 +102,7 @@ const CryptoChart = ({ id }) => {
     setPriceHistory(data.prices);
   };
 
+
   console.log(labels.length);
 
   return (
@@ -110,7 +111,7 @@ const CryptoChart = ({ id }) => {
         {labels.length ? (
           <Line options={options} data={data} />
         ) : (
-          <div style={{ padding: "4rem 1rem" }}>
+          <div>
             <LinearProgress color="inherit" />
           </div>
         )}
@@ -118,5 +119,5 @@ const CryptoChart = ({ id }) => {
     </Paper>
   );
 };
-// export default CryptoChart;
+
 export default React.memo(CryptoChart);

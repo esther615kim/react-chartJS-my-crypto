@@ -29,11 +29,8 @@ const CoinList = () => {
     return data;
   };
 
-
-  // console.log(items);
   useEffect(() => {
     fetchData();
-    // fetchSingleCoin("bitcoin");
   }, []);
 
   return (

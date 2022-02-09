@@ -23,7 +23,7 @@ const useFectchDatabyUrl = (url)=>{
         setIsLoading(false);
         setError(err.message);
       })
-    },1000);
+    },500);
   },[url]);
 
   return {data,isLoading,error}

@@ -10,8 +10,8 @@ export default function CategoryTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Latest" />
+      <Tabs color="inherit" value={value} onChange={handleChange} centered>
+        <Tab  label="Latest" />
         <Tab label="Trending" />
       </Tabs>
     </Box>

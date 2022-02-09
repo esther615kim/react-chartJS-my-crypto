@@ -19,7 +19,7 @@ export const StyledBox = styled(Box)`
   width: 18.5rem;
   margin: 0.5rem;
   border-radius: 0.2rem;
-  background-color: ${({ bg }) => bg || "#eee"};
+  background-color: ${({ bg }) => bg || "#f2f7fc"};
   div img {
     margin: 0.5rem 1rem;
     width: 2rem;
@@ -35,7 +35,7 @@ export const StyledBox = styled(Box)`
     text-align:right;
   }
 :hover{
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2.6px;
 }
 `;
 export const StyledDiv = styled.div`

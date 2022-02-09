@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Pagination } from "@mui/material";
+import { Box, Pagination,LinearProgress  } from "@mui/material";
 import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
 import { useGetNewsQuery } from '../../store/fetchNewsApi';
 import CategoryTabs from "./Tabs";
@@ -48,7 +48,9 @@ const News = () => {
               </StyledPaper>
             ))
         ) : (
-          <h4>loading...</h4>
+          <div>
+          <LinearProgress color="inherit" />
+        </div>
         )}
       </StyledBox>
       <Pagination

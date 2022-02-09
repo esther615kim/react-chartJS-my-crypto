@@ -10,9 +10,9 @@ const Header = () => {
   
   return <div>
       <AppBar position="sticky">
-          <StyledToolbar elevation={1}>
+          <StyledToolbar >
             <StyledLink to="/">
-              <h5>my-crypto</h5>
+              <h3>Crypto.</h3>
               </StyledLink>
               <SideMenu/>
           </StyledToolbar>

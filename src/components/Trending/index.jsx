@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box,LinearProgress } from "@mui/material";
 
 import { StyledUl, StyledPaper } from "./trending.styed";
 import axios from "axios";
@@ -45,7 +45,9 @@ const Trending = () => {
             </StyledPaper>
           ))
         ) : (
-          <h3>loading...</h3>
+          <div>
+          <LinearProgress color="inherit" />
+        </div>
         )}
       </StyledUl>
     </Box>

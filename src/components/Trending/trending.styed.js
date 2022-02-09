@@ -18,7 +18,7 @@ margin:0.5rem;
 padding-top:0.5rem;
 text-align:center;
 background: #FCFCFC; 
-border: solid #737173 1px; 
+border: solid #737173 0.5px; 
 box-shadow: 2px 3px 2px rgba(203, 179, 245, 0.5)  ; 
 -webkit-box-shadow: 2px 3px 2px rgba(203, 179, 245, 0.5)  ; 
 -moz-box-shadow: 2px 3px 2px rgba(203, 179, 245, 0.5)  ; 

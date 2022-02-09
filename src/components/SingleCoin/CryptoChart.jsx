@@ -31,7 +31,6 @@ const CryptoChart = ({ id }) => {
   const [cryptoPriceInfo, setCryptoPriceInfo] = useState();
   const [labels, setDateHistory] = useState([]);
   const [priceHistory, setPriceHistory] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const options = {
     plugins: {
@@ -70,16 +69,14 @@ const CryptoChart = ({ id }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      // setIsLoaded(prev=>!prev)
       fetchSingleCoin()
         .then((res) => {
-          res && setCryptoPriceInfo(res.prices);
+          setCryptoPriceInfo(res.prices);
         })
         .then(() => {
           formatChartData();
         });
     }, 500);
-    // setIsLoaded(prev=>!prev)
   }, []); //data
 
   const formatChartData = () => {
@@ -97,9 +94,9 @@ const CryptoChart = ({ id }) => {
     seedData(newChartData);
   };
 
-  const seedData = (data) => {
-    setDateHistory(data.dates);
-    setPriceHistory(data.prices);
+  const seedData = (_data) => {
+    setDateHistory(_data.dates);
+    setPriceHistory(_data.prices);
   };
 
 
@@ -108,7 +105,7 @@ const CryptoChart = ({ id }) => {
   return (
     <Paper>
       <>
-        {labels.length ? (
+        {labels.length? (
           <Line options={options} data={data} />
         ) : (
           <div>

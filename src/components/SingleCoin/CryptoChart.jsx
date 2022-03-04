@@ -77,7 +77,7 @@ const CryptoChart = ({ id }) => {
           formatChartData();
         });
     }, 500);
-  }, []); //data
+  }, [labels,data]); //data
 
   const formatChartData = () => {
     if (!cryptoPriceInfo) return;

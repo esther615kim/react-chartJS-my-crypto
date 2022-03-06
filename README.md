@@ -18,13 +18,13 @@
 ### Lessons learned and what I've praticed  
   
 - `RKT Query` 
- It was tricky since `headers` information should be included in the API request call as a second argument. I seperated `headers` and `baseUrl` from the newsApi function to make it more readable and easier to amend in the future.  I'd like to try using RTK Query a few more times to use it better.
+ I have used a simple version of RTK Query custom hook in the `Butler` project. This time, it was a bit tricky since `headers` should be included in the API request call as a second argument. I seperated `headers` and `baseUrl` from the newsApi function to make it more readable and easier to amend in the future. I'd like to pratice adding customised middleware next time.
 
 - `Chart.js`
- I chose `Chart.js` over other options mainly because:1.`time limit`: I mainly got 2 days for the data visualisation project 2.The docs look easy to follow and it seemed easy to add a simple chart in the App. However, sorting and amending the data source took me some good time to be finally displayed in the chart!  
+ I chose `Chart.js` over other options because I got just 2 days for the data visualisation project sprint. The docs look easy to follow and it seemed simple to add a chart in the App. However, it turned out that sorting and modifying the source data took me some `good` time. It was a good pratice to sort and filter the raw data and make it work in the `data obj` for the chart.   
 
 - custom hook `useFetchData`
- throughout the project phase, I repeatedly used a code block  for calling APIs using `Axios` and searched for a better practice to avoid "DRY". I found that making a custom hook to fetch APIs could be a good solution and created `useFetchData.js`.
+ Throughout the project phase, at some point, I noticed that I was repeatedly using almost the same code block for calling APIs. I searched for a better practice to avoid "DRY". I found that making a custom hook to fetch APIs could be a good solution and created `useFetchData.js`.
   
 ### Ideas for Improvement
   

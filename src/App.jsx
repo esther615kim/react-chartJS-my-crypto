@@ -6,12 +6,15 @@ import LandingPage from "./pages/LandingPage";
 import { Provider } from "react-redux";
 import SingleNews from './components/News/SingleNews';
 import { store } from './store/index';
+import { StyledApp,StyledDiv } from './styles/globa.styled';
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-      <div className="App">
+      <StyledApp>
+         {/* iPhone Pro 12 */}
+        <StyledDiv style={{width:390, height:844}}>
         <Header />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -20,7 +23,8 @@ function App() {
           <Route path="/crypto/:id" element={<SingleCoinPage/>} />
           {/* <Route path="/crypto" element={<DetailPage />} /> */}
         </Routes>
-      </div>
+        </StyledDiv>
+      </StyledApp>
       </Provider>
     </BrowserRouter>
   );

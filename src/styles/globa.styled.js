@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Box} from "@mui/material";
 
 export const StyledApp = styled.div`
 display:flex;
@@ -21,4 +22,11 @@ overflow-y:scroll;
 -ms-overflow-style: none;
 box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2.6px;
 
+`
+export const StyledBox = styled(Box)`
+max-height:60vh;
+overflow: hidden;
+text-align:justify;
+
+text-overflow: ellipsis; 
 `

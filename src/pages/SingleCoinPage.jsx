@@ -5,6 +5,7 @@ import { Grid, Box,Button,LinearProgress } from "@mui/material";
 
 import CryptoChart from './../components/SingleCoin/CryptoChart';
 import useFectchDatabyUrl from './../hooks/useFetchData';
+import { StyledBox} from '../styles/globa.styled';
 
 const SingleCoinPage = () => {
   const { id } = useParams();
@@ -12,8 +13,6 @@ const SingleCoinPage = () => {
 
   if(error) return <h3>error</h3>
   if(isLoading || !data) return <LinearProgress/>
-
-  console.log(data);
 
   return (
     <Box pl={3}>
@@ -61,13 +60,15 @@ const SingleCoinPage = () => {
             <Grid item xs={11} md={11}>
               <Box pb={3}>
                 <h3>Information</h3>
-                <div>
-                  <p>{data.description.en}</p>
-                </div>
+                <StyledBox>
+                  <p>{data.description.en.replace(/<[^>]+>/g, '')}...</p>
+                </StyledBox>
               </Box>
             </Grid>
-            <Grid item xs={11} md={11}>
-              <Button>Go to homepage</Button>
+            <Grid pb={2} item xs={11} md={11}>
+              <Button
+              onClick={()=>window.open(data.links.homepage[0])} 
+              color="inherit" fullWidth variant="outlined">Go to homepage</Button>
             </Grid>
           </>
       </Grid>
@@ -76,19 +77,3 @@ const SingleCoinPage = () => {
 };
 
 export default SingleCoinPage;
-
-// before refactoring
-  // const fetchSingleCoin = useCallback(async (id) => {
-  //   const { data } = await axios.get(SingleData(id));
-  //   return data;
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchSingleCoin(id)
-  //   .then((res)=>{
-  //     const updatedCoin = res;
-  //     setCrypto(updatedCoin);
-  //     // console.log("crypto info",crypto);
-  //   })
-    
-  // }, [id]);

@@ -1,6 +1,6 @@
 <h1 align="center"> My-Crypto</h1><p align="center">
 <div align="center">
-  <p align="center"><a href="https://github.com/esther615kim/react-chartJS-my-crypto">Netlify-deployed App (to-be-updated)</a></p>
+  <p align="center"><a href="https://pedantic-morse-dc91d4.netlify.app">Netlify-deployed App</a></p>
 </div>
 
 ## Project

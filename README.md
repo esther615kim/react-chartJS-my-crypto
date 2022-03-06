@@ -1,9 +1,13 @@
+<h1 align="center"> My-Crypto</h1><p align="center">
+<div align="center">
+  <p align="center"><a href="https://pedantic-morse-dc91d4.netlify.app">Netlify-deployed App</a></p>
+</div>
+
 ## Project
 
   A moble-first `React` application that can search and display cryptocurrency updates and the market news. To help visualise the data, I used `Chart.js`. `CoinGeocko` and `Bing News Search` were used as third-party APIs for the Chart component and the News page. For data fetching, I tried using both `RTK Query` and `Axios` for me to compare the functionalities and differences.
 
-![image](https://user-images.githubusercontent.com/75744588/156934284-d15af0f0-1f56-43c9-b661-d7bb2060b5a6.png)
-
+<img src="https://user-images.githubusercontent.com/75744588/156934284-d15af0f0-1f56-43c9-b661-d7bb2060b5a6.png" width="550"> 
 
 ### Technologies
 - React 

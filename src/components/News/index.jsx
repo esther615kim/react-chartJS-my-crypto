@@ -1,36 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Box, Pagination,LinearProgress  } from "@mui/material";
+import { Box, Pagination, LinearProgress } from "@mui/material";
 import { StyledUl, StyledPaper, StyledBox } from "./news.styled";
-import { useGetNewsQuery } from '../../store/fetchNewsApi';
+import { useGetNewsQuery } from "../../store/fetchNewsApi";
 import CategoryTabs from "./Tabs";
 import { Link } from "react-router-dom";
-
+import { keys } from '@mui/system';
 
 const News = () => {
   const [page, setPage] = useState(1);
-  const [news,setNews] = useState()
+  const [news, setNews] = useState();
   const data = useGetNewsQuery(); //data.data
-  
-  useEffect(()=>{
-    setTimeout(()=>{
+
+  useEffect(() => {
+    setTimeout(() => {
       console.log(data.status);
-      if(data.status==="fulfilled" && data.data.value.length){
+      // if (data.status === "fulfilled" && data.data.value.length) {
+        if(data.status ==="fulfilled"){
         setNews(data.data.value);
       }
-    },1500)
-
-  },[news]);
-
+    }, 1500);
+  }, [news,data]);
   return (
     <>
       <StyledBox>
-        <CategoryTabs />
-
-        { news ? (
+        {news ? (
           news
             .slice((page - 1) * 10, (page - 1) * 10 + 10) // 10 per page
-            .map((item) => (
-              <StyledPaper key={item.name}>
+            .map((item,key) => (
+              <StyledPaper key={key}>
                 <img
                   src={
                     item.image?.thumbnail?.contentUrl ||
@@ -39,7 +36,7 @@ const News = () => {
                   style={{ width: 120, height: 120 }}
                   alt="symbol"
                 />
-                <Link to={`/news/${item.id}`}> 
+                <Link to={`/news/${key}`}  state={{ from:item }} >
                   <div>
                     <h5>{item.name}</h5>
                     <p>{item.description}</p>
@@ -49,8 +46,8 @@ const News = () => {
             ))
         ) : (
           <div>
-          <LinearProgress color="inherit" />
-        </div>
+            <LinearProgress color="inherit" />
+          </div>
         )}
       </StyledBox>
       <Pagination
@@ -65,6 +62,5 @@ const News = () => {
     </>
   );
 };
-
 
 export default News;

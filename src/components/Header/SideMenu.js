@@ -17,7 +17,7 @@ export default function SideMenu() {
 
   return (
     <>
-      <StyledButton sx={{color:"#fff"}}
+      <StyledButton 
         startIcon={<MenuIcon />}
         id="menuButton"
         aria-controls={open ? "basic-menu" : undefined}

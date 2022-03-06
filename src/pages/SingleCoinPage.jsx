@@ -2,7 +2,6 @@ import millify from "millify";
 import { Link, useParams } from "react-router-dom";
 import { SingleData } from "./../config/api";
 import { Grid, Box,Button,LinearProgress } from "@mui/material";
-
 import CryptoChart from './../components/SingleCoin/CryptoChart';
 import useFectchDatabyUrl from './../hooks/useFetchData';
 import { StyledBox} from '../styles/globa.styled';
@@ -10,6 +9,8 @@ import { StyledBox} from '../styles/globa.styled';
 const SingleCoinPage = () => {
   const { id } = useParams();
   const {data,isLoading,error} = useFectchDatabyUrl(SingleData(id));
+
+  // CHART
 
   if(error) return <h3>error</h3>
   if(isLoading || !data) return <LinearProgress/>

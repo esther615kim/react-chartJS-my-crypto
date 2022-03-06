@@ -25,7 +25,6 @@ const CoinList = () => {
 
   const fetchSingleCoin = async (id) => {
     const { data } = await axios.get(SingleData(id));
-    console.log("single data",data);
     return data;
   };
 

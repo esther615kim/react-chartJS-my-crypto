@@ -28,6 +28,7 @@ ChartJS.register(
 );
 
 const CryptoChart = ({ id }) => {
+
   const [cryptoPriceInfo, setCryptoPriceInfo] = useState();
   const [labels, setDateHistory] = useState([]);
   const [priceHistory, setPriceHistory] = useState([]);
@@ -49,7 +50,7 @@ const CryptoChart = ({ id }) => {
     },
   };
 
-  const data = {
+  const dataInfo = {
     labels,
     datasets: [
       {
@@ -61,23 +62,10 @@ const CryptoChart = ({ id }) => {
     ],
   };
 
-  // useCallback?
   const fetchSingleCoin = async () => {
     const { data } = await axios.get(ChartInfo(id, 365));
     return data;
   }; 
-
-  useEffect(() => {
-    setTimeout(() => {
-      fetchSingleCoin()
-        .then((res) => {
-          setCryptoPriceInfo(res.prices);
-        })
-        .then(() => {
-          formatChartData();
-        });
-    }, 500);
-  }, []); //data
 
   const formatChartData = () => {
     if (!cryptoPriceInfo) return;
@@ -100,13 +88,23 @@ const CryptoChart = ({ id }) => {
   };
 
 
-  console.log(labels.length);
+  useEffect(() => {
+    setTimeout(() => {
+      fetchSingleCoin()
+        .then((res) => {
+          setCryptoPriceInfo(res.prices);
+        })
+        .then(() => {
+          formatChartData();
+        });
+    }, 500);
+  }, [dataInfo]); //data
 
   return (
     <Paper>
       <>
         {labels.length? (
-          <Line options={options} data={data} />
+          <Line options={options} data={dataInfo} />
         ) : (
           <div>
             <LinearProgress color="inherit" />
